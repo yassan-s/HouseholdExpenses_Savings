@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+	<title>貯金一覧</title>
+</head>
+
+<body>
+<!-- header.htmlをインクルード -->
+<div th:insert="~{fragment/header :: page_list}"></div>
+
+<div class="container">
+	<h1 th:text="${test}">title</h1>
+
+	<div class="row">
+		<h3>収入 : <span th:text="${totalIncome}">+</span> 円</h3>
+		<h3>支出 : <span th:text="${totalCost}">-</span> 円</h3>
+		<h3>合計 : <span th:text="${totalMoney}">+-</span> 円</h3>
+	</div><!-- row -->
+
+	<div class="row">
+		<div class="col">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">UserID</th>
+						<th scope="col">登録日</th>
+						<th scope="col">カテゴリー</th>
+						<th scope="col">金額</th>
+						<!-- <th scope="col">収入支出判断</th> -->
+						<th scope="col">メモ</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="accountBook : ${accountBooks}">
+						<td th:text="${accountBook.id}">id</td>
+						<td th:text="${accountBook.user_id}">user_id</td>
+						<td th:text="${accountBook.recode_date}">recode_date</td>
+						<td th:text="${accountBook.category.category_name}">category_name</td>
+						<td th:text="${accountBook.money}">money</td>
+						<!-- <td th:text="${accountBook.income_cost_flg}">income_cost_flg</td> -->
+						<td th:text="${accountBook.note}">note</td>
+						<td>
+							<a class="btn btn-outline-success" th:href="@{'/accountBook/edit/'+${accountBook.id}}" role="button">更新</a>
+							<a class="btn btn-outline-danger" th:href="@{'/accountBook/delete/'+${accountBook.id}}" role="button" >削除</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div><!-- col -->
+	</div><!-- row -->
+</div><!-- container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+
+</html>
+

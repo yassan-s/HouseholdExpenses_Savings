@@ -1,0 +1,192 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.entity.Category;
+import com.example.demo.entity.AccountBook;
+import com.example.demo.form.AccountBookForm;
+import com.example.demo.service.AccountBookService;
+
+/**
+* 貯金の一覧画面を制御する
+*
+*/
+@Controller
+@RequestMapping("/accountBook")
+public class AccountBookController {
+
+	@Autowired
+	AccountBookService service;
+
+	/**
+	* 一覧表示
+	* @param model
+	* @return html accountBook/list
+	*/
+	@GetMapping
+	public String list(Model model) {
+
+		//支出入を取得
+		List<AccountBook> accountBooks = service.getAccountBookList();
+
+		//合計収入を計算
+		int totalIncome = service.sumIncome(accountBooks);
+		//合計支出を計算
+		int totalCost = service.sumCost(accountBooks);
+
+		model.addAttribute("test", "Home");
+		model.addAttribute("accountBooks", accountBooks);
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("totalCost", totalCost);
+		model.addAttribute("totalMoney", totalIncome - totalCost);
+
+		return "accountBook/list";
+	}
+
+	/**
+	* Form画面表示(新規登録用)
+	* @param model
+	* @param accountBookForm
+	* @return html accountBook/form
+	*/
+	@GetMapping("/form")
+	public String getForm(Model model, AccountBookForm accountBookForm) {
+
+		// savingFormを新規登録のために、trueを格納
+		accountBookForm.setNewAccountBook(true);
+
+		// カテゴリー一覧を取得し,Formクラスに格納
+		List<Category> categories = service.getCategoryAll();
+		accountBookForm.setCategories(categories);
+
+		model.addAttribute("title", "新規Form");
+
+		return "accountBook/form";
+	}
+
+	/**
+	* 入出金データ１件の登録
+	* @param model
+	* @param accountBookForm
+	* @return redirect:/accountBook
+	*/
+	@PostMapping("/insert")
+	public String insert(Model model, AccountBookForm accountBookForm) {
+
+		AccountBook accountBook = makeSaving(accountBookForm);
+		service.insert(accountBook);
+
+		return "redirect:/accountBook";
+	}
+
+	/**
+	* 1件のレコードを取得し,Form画面表示(更新処理用)
+	* @param model
+	* @param @PathVariable("id") int id
+	* @return html accountBook/form
+	*/
+	@GetMapping("/edit/{id}")
+	public String form(Model model, @PathVariable("id") int id) {
+
+		// 更新対象を取得
+		AccountBook accountBook = service.getAccountBook(id);
+
+		// 取得したデータを変換する
+		AccountBookForm accountBookForm = makeSavingForm(accountBook);
+		// savingFormを更新のために、falseを格納
+		accountBookForm.setNewAccountBook(false);
+
+		// カテゴリー一覧を取得し,Formクラスに格納
+		List<Category> categories = service.getCategoryAll();
+		accountBookForm.setCategories(categories);
+
+		model.addAttribute("title", "更新form");
+		model.addAttribute(accountBookForm);
+
+		return "accountBook/form";
+	}
+
+	/**
+	* 入出金データ１件の更新
+	* @param model
+	* @param accountBookForm
+	* @return redirect:/accountBook
+	*/
+	@PostMapping("/update")
+	public String update(Model model, AccountBookForm accountBookForm) {
+
+		AccountBook accountBook = makeSaving(accountBookForm);
+		service.updateAccountBook(accountBook);
+
+		return "redirect:/accountBook";
+
+	}
+
+	/**
+	* 入出金データ１件の削除
+	* @param model
+	* @param @PathVariable("id") int id
+	* @return redirect:/saving
+	*/
+	@GetMapping("/delete/{id}")
+	public String delete(Model model, @PathVariable("id") int id) {
+
+		service.deleteAccountBook(id);
+
+		return "redirect:/accountBook";
+
+	}
+
+	/**
+	* AccountBookForm(Form)からAccountBook(entity)に変換
+	* @param accountBookForm
+	* @return accountBook
+	*/
+	public AccountBook makeSaving(AccountBookForm accountBookForm) {
+
+		AccountBook accountBook = new AccountBook();
+
+		//今後ログインユーザーIDを取得予定
+		//暫定で「user_id = １」を登録する
+		accountBook.setId(accountBookForm.getId());
+		accountBook.setUser_id(1);
+		accountBook.setRecode_date(accountBookForm.getRecode_date());
+		accountBook.setCategory_id(accountBookForm.getCategory_id());
+		accountBook.setMoney(accountBookForm.getMoney());
+		accountBook.setIncome_cost_flg(accountBookForm.getIncome_cost_flg());
+		accountBook.setNote(accountBookForm.getNote());
+
+		return accountBook;
+	}
+
+	/**
+	* AccountBook(entity)からAccountBookForm(Form)に変換
+	* @param accountBook
+	* @return accountBookForm
+	*/
+	public AccountBookForm makeSavingForm(AccountBook accountBook) {
+
+		AccountBookForm accountBookForm = new AccountBookForm();
+
+		//今後ログインユーザーIDを取得予定
+		//暫定で「user_id = １」を登録する
+		accountBookForm.setId(accountBook.getId());
+		accountBookForm.setUser_id(1);
+		accountBookForm.setRecode_date(accountBook.getRecode_date());
+		accountBookForm.setCategory_id(accountBook.getCategory_id());
+		accountBookForm.setMoney(accountBook.getMoney());
+		accountBookForm.setIncome_cost_flg(accountBook.getIncome_cost_flg());
+		accountBookForm.setNote(accountBook.getNote());
+
+		return accountBookForm;
+	}
+
+}
