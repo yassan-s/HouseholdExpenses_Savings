@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.mapper.CategoryMapper">
+<mapper namespace="com.example.application.mapper.CategoryMapper">
 
-	<select id="getCategoryAll" resultType="com.example.demo.entity.Category">
+	<select id="getCategoryAll" resultType="com.example.application.entity.Category">
 		SELECT
 		   ID
 		  ,CATEGORY_NAME

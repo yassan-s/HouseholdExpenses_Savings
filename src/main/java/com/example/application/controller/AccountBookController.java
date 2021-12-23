@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.application.controller;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.entity.Category;
-import com.example.demo.entity.AccountBook;
-import com.example.demo.form.AccountBookForm;
-import com.example.demo.service.AccountBookService;
+import com.example.application.entity.AccountBook;
+import com.example.application.entity.Category;
+import com.example.application.form.AccountBookForm;
+import com.example.application.service.AccountBookService;
 
 /**
 * 貯金の一覧画面を制御する

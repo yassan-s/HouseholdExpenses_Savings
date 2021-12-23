@@ -22,3 +22,12 @@ VALUES
   (2, '生活費'),
   (3, '食費'),
   (4, '貯金');
+
+INSERT INTO users(
+    id
+  , name
+  , password
+ )
+VALUES
+  (1, 'aaa', 'aaa'),
+  (2, 'bbb', 'bbb');

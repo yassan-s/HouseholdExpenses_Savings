@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.mapper.AccountBookMapper">
+<mapper namespace="com.example.application.mapper.AccountBookMapper">
 
 	<select id="selectAll" resultMap="AccountBookMap">
 		SELECT
@@ -16,7 +16,7 @@
 		  ,CG.CATEGORY_NAME
 		FROM
 		  HOUSEHOLD_EXPENSES HE
-		LEFT JOIN
+		INNER JOIN
 		  CATEGORIES CG
 		ON
 		  HE.CATEGORY_ID = CG.ID
@@ -24,7 +24,7 @@
 		  RECODE_DATE DESC
 	</select>
 
-	<resultMap id="AccountBookMap" type="com.example.demo.entity.AccountBook">
+	<resultMap id="AccountBookMap" type="com.example.application.entity.AccountBook">
 		<id property="id" column="id"/>
 		<result property="user_id" column="user_id"/>
 		<result property="recode_date" column="recode_date"/>
@@ -34,17 +34,17 @@
 		<association property="category" resultMap="categoryResult"/>
 	</resultMap>
 
-	<resultMap id="categoryResult" type="com.example.demo.entity.Category">
+	<resultMap id="categoryResult" type="com.example.application.entity.Category">
 		<id property="id" column="id"/>
 		<result property="category_name" column="category_name"/>
 	</resultMap>
 
-	<insert id="insertAccountBook" parameterType="com.example.demo.entity.AccountBook">
+	<insert id="insertAccountBook" parameterType="com.example.application.entity.AccountBook">
 		INSERT INTO household_expenses(user_id, recode_date, category_id, money, income_cost_flg, note)
 		VALUES (#{user_id}, #{recode_date}, #{category_id}, #{money}, #{income_cost_flg}, #{note})
 	</insert>
 
-	<select id="getAccountBook" resultType="com.example.demo.entity.AccountBook" parameterType="int">
+	<select id="getAccountBook" resultType="com.example.application.entity.AccountBook" parameterType="int">
 		SELECT
    		   ID
   		  ,USER_ID
@@ -59,7 +59,7 @@
 	      ID = #{id}
 	</select>
 
-	<update id="updateAccountBook" parameterType="com.example.demo.entity.AccountBook">
+	<update id="updateAccountBook" parameterType="com.example.application.entity.AccountBook">
 		UPDATE
 		  HOUSEHOLD_EXPENSES
 		SET

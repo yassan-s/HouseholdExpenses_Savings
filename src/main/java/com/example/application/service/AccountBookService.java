@@ -1,14 +1,14 @@
-package com.example.demo.service;
+package com.example.application.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.Category;
-import com.example.demo.entity.AccountBook;
-import com.example.demo.mapper.CategoryMapper;
-import com.example.demo.mapper.AccountBookMapper;
+import com.example.application.entity.AccountBook;
+import com.example.application.entity.Category;
+import com.example.application.mapper.AccountBookMapper;
+import com.example.application.mapper.CategoryMapper;
 
 @Service
 public class AccountBookService {

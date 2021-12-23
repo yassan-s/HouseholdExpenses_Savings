@@ -1,20 +1,41 @@
-package com.example.demo.entity;
+package com.example.application.form;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.example.application.entity.Category;
 
 /**
-* 貯金(Saving)項目と金額
+* Formの入力値を格納
 */
-public class AccountBook {
+public class AccountBookForm {
 
 	private int id;
+
 	private int user_id;
+
+	// form画面から取得した値をformat変換する
+	// 入力値はString型として扱われるため
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate recode_date;
+
 	private int category_id;
-	private Category category;
+
 	private int money;
+
 	private int income_cost_flg;
+
 	private String note;
+
+	// カテゴリー全件を格納
+	private List<Category> categories;
+
+	// form画面判別用
+	// true 新規登録 / false 更新
+	private boolean newAccountBook;
+
 
 	public int getId() {
 		return id;
@@ -65,11 +86,19 @@ public class AccountBook {
 		this.note = note;
 	}
 
-	public Category getCategory() {
-		return category;
+	public boolean isNewAccountBook() {
+		return newAccountBook;
 	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setNewAccountBook(boolean newAccountBook) {
+		this.newAccountBook = newAccountBook;
 	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 
 }
