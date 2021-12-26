@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     //DBからユーザ情報を検索するメソッドを実装したクラス
     @Autowired
-    SiteUserMapper siteUserMapper;
+    private SiteUserMapper siteUserMapper;
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {

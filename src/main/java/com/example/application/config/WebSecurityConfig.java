@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			//リクエスト時に認証が必要かを定義
 			.authorizeRequests()
 				//認証が必要ない
-				.antMatchers("/").permitAll()
+				.antMatchers("/", "/signup").permitAll()
 				//上記以外は認証が必要
 				.anyRequest().authenticated()
 				.and()
@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/login?logout")
 				.permitAll()
 				.and()
-			// rememberMeの有効化
+			//rememberMeの有効化
 			.rememberMe()
 				;
 		//h2dbをブラウザで見れるようにする
