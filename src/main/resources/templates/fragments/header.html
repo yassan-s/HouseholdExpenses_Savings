@@ -3,10 +3,10 @@
 
 <body>
 	<div class="nav-page-list" th:fragment="page_list">
+	<div th:text="${#authentication.principal.username}"></div>
 
-        <!-- <h1 th:inline="text">[[${#httpServletRequest.remoteUser}]]!</h1> -->
-
-		<ul class="nav justify-content-end">
+		<!-- <ul class="nav justify-content-end"> -->
+		<ul class="nav nav-pills nav-fill">
 		  <li class="nav-item">
 		    <a class="nav-link active" aria-current="page" href="/accountBook">List</a>
 		  </li>
@@ -26,3 +26,5 @@
 </body>
 
 </html>
+
+
