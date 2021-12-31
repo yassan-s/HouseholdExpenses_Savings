@@ -16,4 +16,9 @@
     	  name = #{name}
 	</select>
 
+	<insert id="insertNewUser" parameterType="com.example.application.entity.SiteUser">
+		INSERT INTO users(name, password)
+		VALUES (#{name}, #{password})
+	</insert>
+
 </mapper>

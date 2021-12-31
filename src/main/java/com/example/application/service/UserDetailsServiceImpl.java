@@ -50,4 +50,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userDetails;
     }
 
+    //ユーザーを新規登録
+    public void register(SiteUser user) {
+    	siteUserMapper.insertNewUser(user);
+    }
+
 }
