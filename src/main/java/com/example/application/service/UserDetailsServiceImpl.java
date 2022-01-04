@@ -23,6 +23,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private SiteUserMapper siteUserMapper;
 
+    //暗号化するために使用
+    @Autowired
+    BCryptPasswordEncoder encoder;
+
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
 
@@ -40,18 +44,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         GrantedAuthority authority = new SimpleGrantedAuthority("USER");
         grantList.add(authority);
 
-        //rawDataのパスワードは渡すことができないので、暗号化
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
         //UserDetailsはインタフェースなので、Userクラスのコンストラクタで生成したユーザオブジェクトをキャスト
         //org.springframework.security.core.userdetails.User を利用
-        UserDetails userDetails = (UserDetails)new User(loginUser.getName(), encoder.encode(loginUser.getPassword()),grantList);
+        UserDetails userDetails = (UserDetails)new User(loginUser.getName(), loginUser.getPassword() ,grantList);
 
         return userDetails;
     }
 
     //ユーザーを新規登録
     public void register(SiteUser user) {
+
+    	//パスワードをハッシュ化
+    	user.setPassword(encoder.encode(user.getPassword()));
+    	//パスワードを確認
+    	System.out.println("パスワードは " + user.getPassword());
+
+    	//ユーザーの新規登録処理を実行
     	siteUserMapper.insertNewUser(user);
     }
 

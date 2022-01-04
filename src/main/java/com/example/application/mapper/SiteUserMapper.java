@@ -10,6 +10,6 @@ public interface SiteUserMapper {
 	// ユーザー名をもとにユーザーデータを取得
 	public SiteUser getLoginUser(String name);
 
-	// ユーザーを新規に登録
+	// ユーザーを新規登録
 	public void insertNewUser(SiteUser User);
 }

@@ -15,10 +15,10 @@
 <h1>Login</h1>
 
  <div th:if="${param.error}">
-     Invalid username and password.
+     ユーザー名とパスワードが一致しません
  </div>
  <div th:if="${param.logout}">
-     You have been logged out.
+     ログアウトしました
  </div>
  <form th:action="@{/sign_in}" method="post">
      <div><label> User Name : <input type="text" name="name"/> </label></div>

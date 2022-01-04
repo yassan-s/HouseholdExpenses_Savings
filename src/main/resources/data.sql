@@ -29,5 +29,5 @@ INSERT INTO users(
   , password
  )
 VALUES
-  (1, 'aaa', 'aaa'),
-  (2, 'bbb', 'bbb');
+  (1, 'aaa', '$2a$10$m6GDCdDlMc4Bta7OIG/qxOAbO9zVQYsDANCr2imr.nezZH7EU4rPu'),
+  (2, 'bbb', '$2a$10$ISTJJn2xMXYib/vuzOkkC.39.07EX3lYZLNu9zn8c9eUTJkpZUSXi');

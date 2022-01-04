@@ -15,8 +15,12 @@
 <h1>SignUp</h1>
 
 <form method="post" th:action="@{/signup}" th:object="${siteUserForm}">
-    <div><label> User Name : <input type="text" name="name"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> User Name : <input type="text" name="name" th:value="*{name}"/> </label></div>
+	<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <div><label> Password: <input type="password" name="password" th:value="*{password}"/> </label></div>
+	<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
     <div><input type="submit" value="Sign Up"/></div>
 </form>
 

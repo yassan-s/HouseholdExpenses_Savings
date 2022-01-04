@@ -2,6 +2,8 @@ package com.example.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +48,14 @@ public class SecurityController {
 	* @return redirect:/login
 	*/
 	@PostMapping("/signup")
-	public String register(@ModelAttribute SiteUserForm siteUserForm) {
+	public String register(@ModelAttribute @Validated SiteUserForm siteUserForm,
+			BindingResult bindingResult) {
 
+		//バリデーションに問題がある場合
+		if (bindingResult.hasErrors()) {
+			return "signup";
+		}
+		//登録処理を実行
 		userDetailsService.register(changeSiteUser(siteUserForm));
 
 		return "redirect:/login";
