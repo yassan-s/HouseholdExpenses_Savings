@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.application.entity.SiteUser;
 import com.example.application.form.SiteUserForm;
@@ -49,16 +50,25 @@ public class SecurityController {
 	*/
 	@PostMapping("/signup")
 	public String register(@ModelAttribute @Validated SiteUserForm siteUserForm,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 
 		//バリデーションに問題がある場合
 		if (bindingResult.hasErrors()) {
 			return "signup";
 		}
 		//登録処理を実行
-		userDetailsService.register(changeSiteUser(siteUserForm));
+		//問題なければtrue 同一名があればfalse
+		boolean checkRegister = userDetailsService.register(changeSiteUser(siteUserForm));
 
-		return "redirect:/login";
+		if (checkRegister) {
+			redirectAttributes.addFlashAttribute("registerOK", "新規登録が完了しました ログインしてください");
+			return "redirect:/login";
+		} else {
+			redirectAttributes.addFlashAttribute("registerError", "その名前は既に使用されています");
+			return "redirect:/signup";
+		}
+
 	}
 
 	/**

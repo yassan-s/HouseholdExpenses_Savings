@@ -13,6 +13,7 @@
 </head>
 <body>
 <h1>SignUp</h1>
+<p th:text="${registerError}"></p>
 
 <form method="post" th:action="@{/signup}" th:object="${siteUserForm}">
     <div><label> User Name : <input type="text" name="name" th:value="*{name}"/> </label></div>

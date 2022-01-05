@@ -14,12 +14,14 @@
 <body>
 <h1>Login</h1>
 
- <div th:if="${param.error}">
-     ユーザー名とパスワードが一致しません
- </div>
- <div th:if="${param.logout}">
-     ログアウトしました
- </div>
+<div th:text="${registerOK}"></div>
+
+<div th:if="${param.error}">
+	<p>ユーザー名とパスワードが一致しません</p>
+</div>
+<div th:if="${param.logout}">
+	<p>ログアウトしました</p>
+</div>
  <form th:action="@{/sign_in}" method="post">
      <div><label> User Name : <input type="text" name="name"/> </label></div>
      <div><label> Password: <input type="password" name="password"/> </label></div>

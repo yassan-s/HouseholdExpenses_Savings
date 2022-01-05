@@ -2,6 +2,7 @@ package com.example.application.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +36,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         //UsernameNotFoundExceptionで例外処理
         if (loginUser == null) {
+            // UsernameNotFoundExceptionにメッセージを渡しても画面に反映されないので、
+            // ここでは適当に空文字を入れておく
             throw new UsernameNotFoundException("User" + name + "was not found in the database");
         }
         //権限のリスト
@@ -52,15 +55,27 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     //ユーザーを新規登録
-    public void register(SiteUser user) {
+    public boolean register(SiteUser user) {
 
-    	//パスワードをハッシュ化
-    	user.setPassword(encoder.encode(user.getPassword()));
-    	//パスワードを確認
-    	System.out.println("パスワードは " + user.getPassword());
+    	//既にユーザー名が登録されていないかを確認
+    	SiteUser existingUser = siteUserMapper.getLoginUser(user.getName());
 
-    	//ユーザーの新規登録処理を実行
-    	siteUserMapper.insertNewUser(user);
+    	//ユーザーがあればfalseを返す
+    	if (Objects.nonNull(existingUser)) {
+    		return false;
+    	//登録されていなければ登録処理
+    	} else {
+        	//パスワードをハッシュ化
+        	user.setPassword(encoder.encode(user.getPassword()));
+        	//パスワードを確認
+        	System.out.println("パスワードは " + user.getPassword());
+
+        	//ユーザーの新規登録処理を実行
+        	siteUserMapper.insertNewUser(user);
+
+        	return true;
+    	}
+
     }
 
 }

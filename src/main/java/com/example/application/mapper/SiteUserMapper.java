@@ -12,4 +12,5 @@ public interface SiteUserMapper {
 
 	// ユーザーを新規登録
 	public void insertNewUser(SiteUser User);
+
 }
