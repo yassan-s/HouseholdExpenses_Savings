@@ -10,7 +10,7 @@ import com.example.application.entity.AccountBook;
 public interface AccountBookMapper {
 
 	// 全件取得
-	public List<AccountBook> selectAll();
+	public List<AccountBook> selectAll(int user_id);
 
 	// 1件登録
 	public void insertAccountBook(AccountBook accountBook);

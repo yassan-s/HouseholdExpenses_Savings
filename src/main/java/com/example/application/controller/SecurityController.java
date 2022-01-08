@@ -65,8 +65,8 @@ public class SecurityController {
 			redirectAttributes.addFlashAttribute("registerOK", "新規登録が完了しました ログインしてください");
 			return "redirect:/login";
 		} else {
-			redirectAttributes.addFlashAttribute("registerError", "その名前は既に使用されています");
-			return "redirect:/signup";
+			redirectAttributes.addFlashAttribute(siteUserForm);
+			return "redirect:/signup?error";
 		}
 
 	}

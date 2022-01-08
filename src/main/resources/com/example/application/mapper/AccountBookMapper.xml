@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.application.mapper.AccountBookMapper">
 
-	<select id="selectAll" resultMap="AccountBookMap">
+	<select id="selectAll" resultMap="AccountBookMap" parameterType="int">
 		SELECT
    		   HE.ID
   		  ,HE.USER_ID
@@ -20,6 +20,8 @@
 		  CATEGORIES CG
 		ON
 		  HE.CATEGORY_ID = CG.ID
+		WHERE
+		  HE.USER_ID = #{user_id}
 		ORDER BY
 		  RECODE_DATE DESC
 	</select>

@@ -7,7 +7,7 @@ import com.example.application.entity.SiteUser;
 @Mapper
 public interface SiteUserMapper {
 
-	// ユーザー名をもとにユーザーデータを取得
+	// ユーザー名からユーザーデータを取得
 	public SiteUser getLoginUser(String name);
 
 	// ユーザーを新規登録

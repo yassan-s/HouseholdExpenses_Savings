@@ -23,8 +23,8 @@ public class AccountBookService {
 	* 一覧表示
 	* @return List<AccountBook>
 	*/
-	public List<AccountBook> getAccountBookList(){
-		return accountBookMapper.selectAll();
+	public List<AccountBook> getAccountBookList(int user_id){
+		return accountBookMapper.selectAll(user_id);
 	}
 
 	/**

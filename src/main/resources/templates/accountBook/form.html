@@ -47,7 +47,7 @@
 	<input type="date" name="recode_date" th:value="${accountBookForm.recode_date}"/><br>
 
 	<input th:if="${!accountBookForm.newAccountBook}" type="hidden" name="id" th:value="${accountBookForm.id}">
-	<input type="hidden" name="user_id" value="1">
+	<input type="hidden" name="user_id" th:value="${accountBookForm.user_id}"/>
 	<br>
 
 	<input type="submit" th:value="${accountBookForm.newAccountBook}? '登録' : '更新'" class="btn btn-outline-success">
