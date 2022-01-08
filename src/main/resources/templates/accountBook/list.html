@@ -17,7 +17,7 @@
 <div th:insert="~{fragments/header :: page_list}"></div>
 
 <div class="container">
-	<h3 th:text="${loginUserCheck}">ログインユーザーチェック</h3>
+	<h3 th:text="${notice_message}">メッセージ</h3>
 
 	<div class="row">
 		<h3>収入 : <span th:text="${totalIncome}">+</span> 円</h3>
@@ -38,6 +38,7 @@
 						<!-- <th scope="col">収入支出判断</th> -->
 						<th scope="col">メモ</th>
 						<th scope="col"></th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -49,9 +50,11 @@
 						<td th:text="${accountBook.money}">money</td>
 						<!-- <td th:text="${accountBook.income_cost_flg}">income_cost_flg</td> -->
 						<td th:text="${accountBook.note}">note</td>
+						<td><a class="btn btn-outline-success" th:href="@{'/accountBook/edit/'+${accountBook.id}}" role="button">更新</a></td>
 						<td>
-							<a class="btn btn-outline-success" th:href="@{'/accountBook/edit/'+${accountBook.id}}" role="button">更新</a>
-							<a class="btn btn-outline-danger" th:href="@{'/accountBook/delete/'+${accountBook.id}}" role="button" >削除</a>
+							<form method="post" th:action="@{'/accountBook/delete/'+${accountBook.id}}">
+								<input type="submit" value="削除" class="btn btn-outline-danger">
+							</form>
 						</td>
 					</tr>
 				</tbody>

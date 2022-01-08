@@ -122,7 +122,7 @@ public class AccountBookController {
 		//ログインユーザー情報を取得
 		SiteUser loginUser = siteUserMapper.getLoginUser(user.getName());
 		if (Objects.isNull(accountBook) || loginUser.getId() != accountBook.getUser_id()) {
-			redirectAttributes.addFlashAttribute("loginUserCheck", "アクセスできません");
+			redirectAttributes.addFlashAttribute("notice_message", "アクセスできません");
 			return "redirect:/accountBook";
 		}
 
@@ -163,7 +163,7 @@ public class AccountBookController {
 	* @param @PathVariable("id") int id
 	* @return redirect:/saving
 	*/
-	@GetMapping("/delete/{id}")
+	@PostMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable("id") int id) {
 
 		service.deleteAccountBook(id);
