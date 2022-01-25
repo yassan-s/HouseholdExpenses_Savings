@@ -1,6 +1,7 @@
 package com.example.application.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
 * 貯金(Saving)項目と金額
@@ -15,6 +16,9 @@ public class AccountBook {
 	private int money;
 	private int income_cost_flg;
 	private String note;
+	private LocalDateTime created_at;
+	private LocalDateTime updated_at;
+
 
 	public int getId() {
 		return id;
@@ -72,4 +76,17 @@ public class AccountBook {
 		this.category = category;
 	}
 
+	public LocalDateTime getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(LocalDateTime created_at) {
+		this.created_at = created_at;
+	}
+
+	public LocalDateTime getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(LocalDateTime updated_at) {
+		this.updated_at = updated_at;
+	}
 }

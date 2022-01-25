@@ -42,8 +42,8 @@
 	</resultMap>
 
 	<insert id="insertAccountBook" parameterType="com.example.application.entity.AccountBook">
-		INSERT INTO household_expenses(user_id, recode_date, category_id, money, income_cost_flg, note)
-		VALUES (#{user_id}, #{recode_date}, #{category_id}, #{money}, #{income_cost_flg}, #{note})
+		INSERT INTO household_expenses(user_id, recode_date, category_id, money, income_cost_flg, note, created_at)
+		VALUES (#{user_id}, #{recode_date}, #{category_id}, #{money}, #{income_cost_flg}, #{note}, #{created_at})
 	</insert>
 
 	<select id="getAccountBook" resultType="com.example.application.entity.AccountBook" parameterType="int">

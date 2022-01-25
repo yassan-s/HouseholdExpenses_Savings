@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS household_expenses
    money int NOT NULL,
    income_cost_flg int NOT NULL,
    note varchar(100),
+   created_at datetime NOT NULL,
+   updated_at datetime,
    PRIMARY KEY(id)
 );
 
