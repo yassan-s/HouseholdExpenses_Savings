@@ -39,7 +39,7 @@ public class AccountBookService {
 	*/
 	public void insert(AccountBook accountBook) {
 		// 秒を切り捨てた現時刻を取得
-		LocalDateTime ldt = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);;
+		LocalDateTime ldt = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 		accountBook.setCreated_at(ldt);
 		accountBookMapper.insertAccountBook(accountBook);
 	}
@@ -59,6 +59,10 @@ public class AccountBookService {
 	* @return
 	*/
 	public void updateAccountBook(AccountBook accountBook) {
+
+		// 秒を切り捨てた現時刻を取得
+		LocalDateTime ldt = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+		accountBook.setUpdated_at(ldt);
 		accountBookMapper.updateAccountBook(accountBook);
 	}
 

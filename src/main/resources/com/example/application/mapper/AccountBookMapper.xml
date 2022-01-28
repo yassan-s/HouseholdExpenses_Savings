@@ -70,6 +70,7 @@
 		  ,MONEY            = #{money}
 		  ,INCOME_COST_FLG  = #{income_cost_flg}
 		  ,NOTE             = #{note}
+		  ,UPDATED_AT       = #{updated_at}
 		WHERE
 		  ID = #{id}
 	</update>
