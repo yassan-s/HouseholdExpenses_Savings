@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<!-- Required meta tags -->
-	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -15,7 +14,7 @@
 
 <body>
 <!-- header.htmlをインクルード -->
-<div th:insert="~{fragment/header :: page_list}"></div>
+<div th:insert="~{fragments/header :: page_list}"></div>
 
 <div class="container">
 <h1 th:text="${title}">form</h1>
@@ -48,7 +47,7 @@
 	<input type="date" name="recode_date" th:value="${accountBookForm.recode_date}"/><br>
 
 	<input th:if="${!accountBookForm.newAccountBook}" type="hidden" name="id" th:value="${accountBookForm.id}">
-	<input type="hidden" name="user_id" value="1">
+	<input type="hidden" name="user_id" th:value="${accountBookForm.user_id}"/>
 	<br>
 
 	<input type="submit" th:value="${accountBookForm.newAccountBook}? '登録' : '更新'" class="btn btn-outline-success">

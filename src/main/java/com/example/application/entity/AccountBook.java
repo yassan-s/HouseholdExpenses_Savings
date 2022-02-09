@@ -1,40 +1,23 @@
-package com.example.demo.form;
+package com.example.application.entity;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.example.demo.entity.Category;
+import java.time.LocalDateTime;
 
 /**
-* Formの入力値を格納
+* 貯金(Saving)項目と金額
 */
-public class AccountBookForm {
+public class AccountBook {
 
 	private int id;
-
 	private int user_id;
-
-	// form画面から取得した値をformat変換する
-	// 入力値はString型として扱われるため
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate recode_date;
-
 	private int category_id;
-
+	private Category category;
 	private int money;
-
 	private int income_cost_flg;
-
 	private String note;
-
-	// カテゴリー全件を格納
-	private List<Category> categories;
-
-	// form画面判別用
-	// true 新規登録 / false 更新
-	private boolean newAccountBook;
+	private LocalDateTime created_at;
+	private LocalDateTime updated_at;
 
 
 	public int getId() {
@@ -86,19 +69,24 @@ public class AccountBookForm {
 		this.note = note;
 	}
 
-	public boolean isNewAccountBook() {
-		return newAccountBook;
+	public Category getCategory() {
+		return category;
 	}
-	public void setNewAccountBook(boolean newAccountBook) {
-		this.newAccountBook = newAccountBook;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
+	public LocalDateTime getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(LocalDateTime created_at) {
+		this.created_at = created_at;
+	}
 
+	public LocalDateTime getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(LocalDateTime updated_at) {
+		this.updated_at = updated_at;
+	}
 }

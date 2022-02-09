@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.application.entity;
 
 /**
 * 貯金(Saving)項目名

@@ -1,10 +1,10 @@
-package com.example.demo.mapper;
+package com.example.application.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.entity.Category;
+import com.example.application.entity.Category;
 
 @Mapper
 public interface CategoryMapper {
