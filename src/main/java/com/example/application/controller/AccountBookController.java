@@ -119,8 +119,10 @@ public class AccountBookController {
 		// 更新対象を取得
 		AccountBook accountBook = service.getAccountBook(id);
 
-		//ログインユーザー情報を取得
+		// ログインユーザー情報を取得
 		SiteUser loginUser = siteUserMapper.getLoginUser(user.getName());
+
+		// 更新先データが存在し、ログインユーザーとUser_idが一致しているかを確認
 		if (Objects.isNull(accountBook) || loginUser.getId() != accountBook.getUser_id()) {
 			redirectAttributes.addFlashAttribute("notice_message", "アクセスできません");
 			return "redirect:/accountBook";
@@ -128,10 +130,10 @@ public class AccountBookController {
 
 		// 取得したデータを変換する
 		AccountBookForm accountBookForm = makeSavingForm(accountBook);
-		// savingFormを更新のために、falseを格納
+		// accountBookFormを更新のために、falseを格納
 		accountBookForm.setNewAccountBook(false);
 
-		// カテゴリー一覧を取得し,Formクラスに格納
+		// カテゴリー一覧を取得し、Formクラスに格納
 		List<Category> categories = service.getCategoryAll();
 		accountBookForm.setCategories(categories);
 
@@ -161,7 +163,7 @@ public class AccountBookController {
 	* 入出金データ１件の削除
 	* @param model
 	* @param @PathVariable("id") int id
-	* @return redirect:/saving
+	* @return redirect:/accountBook
 	*/
 	@PostMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable("id") int id) {
@@ -171,6 +173,9 @@ public class AccountBookController {
 		return "redirect:/accountBook";
 
 	}
+
+
+	/***** EntityクラスとFormクラスを変換 *****/
 
 	/**
 	* AccountBookForm(Form)からAccountBook(entity)に変換

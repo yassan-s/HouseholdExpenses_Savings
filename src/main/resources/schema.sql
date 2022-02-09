@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS users
    password varchar(200) NOT NULL,
    PRIMARY KEY(id)
 );
+
+CREATE TABLE IF NOT EXISTS wish_lists
+(
+   id INT NOT NULL AUTO_INCREMENT,
+   user_id int NOT NULL,
+   wishitem varchar(50) NOT NULL,
+   itemmoney int NOT NULL,
+   itempicture varchar(100) NOT NULL,
+   Purchased int NOT NULL,
+   created_at datetime NOT NULL,
+   updated_at datetime,
+   PRIMARY KEY(id)
+);

@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.example.application.entity.AccountBook;
@@ -45,7 +46,7 @@ public class AccountBookService {
 	}
 
 	/**
-	* 1件のレコードを取得し,Form画面表示(更新処理用)
+	* 1件のレコードを取得し、Form画面表示(更新処理用)
 	* @param id
 	* @return AccountBook
 	*/
@@ -83,6 +84,7 @@ public class AccountBookService {
 	public List<Category> getCategoryAll(){
 		return categoryMapper.getCategoryAll();
 	}
+
 
 	/***** 収支の計算用 *****/
 
