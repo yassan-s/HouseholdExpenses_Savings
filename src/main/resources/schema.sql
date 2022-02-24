@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS wish_lists
    user_id int NOT NULL,
    wishitem varchar(50) NOT NULL,
    itemmoney int NOT NULL,
-   itempicture varchar(100) NOT NULL,
-   Purchased int NOT NULL,
+   itempicture varchar(100),
+   purchased_flg int NOT NULL,
    created_at datetime NOT NULL,
    updated_at datetime,
    PRIMARY KEY(id)

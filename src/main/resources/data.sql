@@ -33,3 +33,17 @@ INSERT INTO users(
 VALUES
   (1, 'aaa', '$2a$10$m6GDCdDlMc4Bta7OIG/qxOAbO9zVQYsDANCr2imr.nezZH7EU4rPu'),
   (2, 'bbb', '$2a$10$ISTJJn2xMXYib/vuzOkkC.39.07EX3lYZLNu9zn8c9eUTJkpZUSXi');
+
+INSERT INTO wish_lists(
+    id
+  , user_id
+  , wishitem
+  , itemmoney
+  , itempicture
+  , purchased_flg
+  , created_at datetime
+  , updated_at datetime
+)
+VALUES
+  (1, 1, 'スッキリわかるJava', 3000, 'test1.img', 0, '2022-02-22 12:00:00', '2022-02-23 12:00:00'),
+  (2, 2, 'スッキリわかるSql', 2000, 'test2.img', 1, '2022-02-20 12:00:00', '2022-02-21 12:00:00');

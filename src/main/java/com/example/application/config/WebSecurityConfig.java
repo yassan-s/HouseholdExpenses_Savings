@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.loginPage("/login")
 				//フォームのSubmitURL、このURLへリクエストが送られると認証処理が実行される
 				.loginProcessingUrl("/sign_in")
-				//認証後にリダイレクトする場所を指定
+				//認証後にリダイレクトするURL先を指定
 				.defaultSuccessUrl("/accountBook")
 				//リクエストパラメータのname属性を明示
 				.usernameParameter("name")
@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.rememberMe()
 				;
 		//h2dbをブラウザで見れるようにする
+		//他のサイトから操作できる可能性があるので、最終的に消すこと
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
 	}
