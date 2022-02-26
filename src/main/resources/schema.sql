@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS wish_lists
 (
-   id INT NOT NULL AUTO_INCREMENT,
+   id int NOT NULL AUTO_INCREMENT,
    user_id int NOT NULL,
    wishitem varchar(50) NOT NULL,
    itemmoney int NOT NULL,

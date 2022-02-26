@@ -41,8 +41,8 @@ INSERT INTO wish_lists(
   , itemmoney
   , itempicture
   , purchased_flg
-  , created_at datetime
-  , updated_at datetime
+  , created_at
+  , updated_at
 )
 VALUES
   (1, 1, 'スッキリわかるJava', 3000, 'test1.img', 0, '2022-02-22 12:00:00', '2022-02-23 12:00:00'),
