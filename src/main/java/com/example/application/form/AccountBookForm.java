@@ -33,7 +33,8 @@ public class AccountBookForm {
 	private List<Category> categories;
 
 	// form画面判別用
-	// true 新規登録 / false 更新
+	// true  新規登録
+	// false 更新処理
 	private boolean newAccountBook;
 
 
