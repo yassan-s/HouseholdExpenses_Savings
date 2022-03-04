@@ -5,7 +5,7 @@
 <div class="nav-page-list" th:fragment="page_list">
 
 <!-- navbar-expand-(画面サイズ) 折りたたむタイミングを指定 -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
 	<div class="container-fluid">
 		<!-- .navbar-brand ブランド要素、ロゴなどを配置 -->
     	<a class="navbar-brand" href="/accountBook">Money+</a>
@@ -17,7 +17,7 @@
 		<!-- .navbar-nav カテゴリーページなどのリンクを設置 / me-auto marginをendまで -->
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<a href="#" th:text="${#authentication.principal.username}"></a>
+					<a class="nav-link" href="#" th:text="${#authentication.principal.username}"></a>
 				</li>
 
 
@@ -35,9 +35,7 @@
 			</ul>
 
 			<form th:action="@{/logout}" method="post">
-				<!-- <input type="submit" value="Sign Out"/> -->
-				<input type="hidden" value="Sign Out"/>
-				<input type="submit" value="Sign Out"/>
+				<button class="btn btn-outline-dark" type="submit">ログアウト</button>
 			</form>
 
 			<!--  <form class="d-flex">
@@ -49,7 +47,7 @@
 	</div><!-- class="container-fluid" -->
 </nav>
 
-<nav style="background-color: #FFC900">
+<nav class="border-bottom">
 	<ul class="nav nav-fill">
 		<li class="nav-item">
 			<a class="nav-link active" aria-current="page" href="/accountBook">家計簿</a>
