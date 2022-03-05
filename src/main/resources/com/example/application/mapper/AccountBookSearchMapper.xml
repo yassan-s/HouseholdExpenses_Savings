@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.application.mapper.AccountBookMapper">
+
+	<select id="selectAll" resultMap="AccountBookMap" parameterType="int">
+		SELECT
+   		   HE.ID
+  		  ,HE.USER_ID
+		  ,HE.RECODE_DATE
+		  ,HE.MONEY
+		  ,HE.INCOME_COST_FLG
+		  ,HE.NOTE
+		  ,CG.CATEGORY_NAME
+		FROM
+		  HOUSEHOLD_EXPENSES HE
+		INNER JOIN
+		  CATEGORIES CG
+		ON
+		  HE.CATEGORY_ID = CG.ID
+		WHERE
+		  HE.USER_ID = #{user_id}
+		ORDER BY
+		  RECODE_DATE DESC
+	</select>
+
+	<resultMap id="AccountBookMap" type="com.example.application.entity.AccountBook">
+		<id property="id" column="id"/>
+		<result property="user_id" column="user_id"/>
+		<result property="recode_date" column="recode_date"/>
+		<result property="money" column="money"/>
+		<result property="income_cost_flg" column="income_cost_flg"/>
+		<result property="note" column="note"/>
+		<association property="category" resultMap="categoryResult"/>
+	</resultMap>
+
+	<resultMap id="categoryResult" type="com.example.application.entity.Category">
+		<id property="id" column="id"/>
+		<result property="category_name" column="category_name"/>
+	</resultMap>
+
+
+</mapper>
