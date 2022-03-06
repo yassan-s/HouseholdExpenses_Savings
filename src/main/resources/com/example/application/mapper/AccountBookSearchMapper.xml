@@ -22,6 +22,8 @@
 		  HE.CATEGORY_ID = CG.ID
 		WHERE
 		  HE.USER_ID = #{user_id}
+		And
+		  HE.RECODE_DATE = #{thisMonth}
 		ORDER BY
 		  RECODE_DATE DESC
 	</select>
