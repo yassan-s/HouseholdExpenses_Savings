@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.application.mapper.AccountBookMapper">
 
-	<select id="selectAll" resultMap="AccountBookMap" parameterType="int">
+	<select id="getThisMonth" resultMap="getThisMonthMap" parameterType="int">
 		SELECT
    		   HE.ID
   		  ,HE.USER_ID
@@ -28,7 +28,7 @@
 		  RECODE_DATE DESC
 	</select>
 
-	<resultMap id="AccountBookMap" type="com.example.application.entity.AccountBook">
+	<resultMap id="getThisMonthMap" type="com.example.application.entity.AccountBook">
 		<id property="id" column="id"/>
 		<result property="user_id" column="user_id"/>
 		<result property="recode_date" column="recode_date"/>

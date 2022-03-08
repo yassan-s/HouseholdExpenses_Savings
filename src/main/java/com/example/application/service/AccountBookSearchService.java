@@ -20,7 +20,8 @@ public class AccountBookSearchService {
 	* @param thisMonth
 	* @return List<AccountBook>
 	*/
-	public List<AccountBook> getAccountBookList(int user_id){
-		return SearchMapper.getThisMonth(user_id);
+	public List<AccountBook> getAccountBookList(int user_id, int thisMonth){
+		// 途中 Mapper側でメソッドを未実装
+		return SearchMapper.getThisMonth(user_id, thisMonth);
 	}
 }
