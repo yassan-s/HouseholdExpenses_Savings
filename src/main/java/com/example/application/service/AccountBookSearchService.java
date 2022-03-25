@@ -1,5 +1,7 @@
 package com.example.application.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,18 @@ public class AccountBookSearchService {
 	public List<AccountBook> getAccountBookList(int user_id, int thisMonth){
 		// 途中 Mapper側でメソッドを未実装
 		return SearchMapper.getThisMonth(user_id, thisMonth);
+	}
+
+
+	/**
+	* 現在日時を習得する
+	* @param
+	* @param
+	* @return LocalDateTime
+	*/
+	public LocalDateTime getLocalDateTimeNow() {
+		// 途中 メソッド名のみ定義
+		// LocalDateTime ldt = LocalDateTime.now();
+		return LocalDateTime.now();
 	}
 }
