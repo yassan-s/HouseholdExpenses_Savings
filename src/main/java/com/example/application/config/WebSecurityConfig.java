@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			//リクエスト時に認証が必要かを定義
 			.authorizeRequests()
 				//認証が必要ない
-				.antMatchers("/", "/signup").permitAll()
+				.antMatchers("/", "/signup", "/test").permitAll()
 				//上記以外は認証が必要
 				.anyRequest().authenticated()
 				.and()

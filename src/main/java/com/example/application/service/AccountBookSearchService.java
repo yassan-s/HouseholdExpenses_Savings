@@ -1,7 +1,7 @@
 package com.example.application.service;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +31,12 @@ public class AccountBookSearchService {
 	/**
 	* 現在日時を習得する
 	* @param
-	* @param
-	* @return LocalDateTime
+	* @return nowTimeStr
 	*/
-	public LocalDateTime getLocalDateTimeNow() {
-		// 途中 メソッド名のみ定義
-		// LocalDateTime ldt = LocalDateTime.now();
-		return LocalDateTime.now();
+	public String getLocalDateTimeNow() {
+			LocalDateTime nowTime = LocalDateTime.now();
+			String nowTimeStr = nowTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+		return nowTimeStr;
 	}
+
 }
