@@ -10,5 +10,5 @@ import com.example.application.entity.AccountBook;
 public interface AccountBookSearchMapper {
 
 	// 初期表示
-	public List<AccountBook> getThisMonth(int user_id, int thisMonth);
+	public List<AccountBook> getThisMonth(int user_id, int year, int month);
 }

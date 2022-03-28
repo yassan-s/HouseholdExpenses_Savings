@@ -22,9 +22,13 @@ public class AccountBookSearchService {
 	* @param thisMonth
 	* @return List<AccountBook>
 	*/
-	public List<AccountBook> getAccountBookList(int user_id, int thisMonth){
-		// 途中 Mapper側でメソッドを未実装
-		return SearchMapper.getThisMonth(user_id, thisMonth);
+	public List<AccountBook> getThisMonthABList(int user_id){
+		// 現時刻を取得
+		LocalDateTime now = LocalDateTime.now();
+		int year = now.getYear();
+		int month = now.getMonthValue();
+		System.out.println(year + ":" + month);
+		return SearchMapper.getThisMonth(user_id, year, month);
 	}
 
 
